@@ -1,6 +1,7 @@
 import requests
 import time
 import pandas as pd
+import os
 #https://cityexpert.rs/ru/properties-for-rent/belgrade ЮРЛ ДЛЯ данных
 
 
@@ -57,6 +58,7 @@ for page in range(1,1000):
         break
     time.sleep(1)
 df = pd.DataFrame(base)
-df.to_csv('apartments.csv', index=False, encoding='utf-8')
+df.to_csv('apartments_tmp.csv', index=False, encoding='utf-8')
+os.replace('apartments_tmp.csv', 'apartments.csv')
 print('Готово!')
 print(len(base))
